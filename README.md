@@ -1,4 +1,8 @@
+![NITO](docs/images/hero.svg)
+
 # NITO
+
+トランポリングループ NITO のランディングページです。
 
 ```sh
 npm create astro@latest -- --template basics
