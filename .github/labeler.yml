@@ -1,0 +1,24 @@
+version: 1
+
+labels:
+  # Type labels
+  - label: "@type/feature"
+    title: '^(:sparkles:|:tada:|:art:).*'
+  - label: "@type/improve"
+    title: '^(:\+1:|:recycle:|:rocket:).*'
+  - label: "@type/fix"
+    title: '^:bug:.*'
+  - label: "@type/docs"
+    title: '^:books:.*'
+    files:
+      - "docs/.+"
+  - label: "@type/build"
+    title: '^(:wrench:|:up:).*'
+    files:
+      - "**/package.json"
+      - ".tool-versions"
+      - "tools/.+"
+  - label: "@type/ci"
+    title: '^:green_heart:.*'
+    files:
+      - '\.github/.+'
