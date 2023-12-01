@@ -1,0 +1,48 @@
+name: "Production"
+
+on:
+  release:
+    types: [ published ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Install deps (with cache)
+        run: bun install
+
+      - name: Build
+        run: bun run build
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        id: cloudflare-pages
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: nito
+          directory: ./dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+
+      - name: Lighthouse
+        uses: foo-software/lighthouse-check-action@v10.0.0
+        with:
+          gitHubAccessToken: ${{ secrets.GITHUB_TOKEN }}
+          locale: ja
+          urls: ${{ steps.cloudflare-pages.outputs.url }}
