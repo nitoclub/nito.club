@@ -11,6 +11,11 @@ concurrency:
 
 jobs:
   publish:
+    permissions:
+      contents: read
+      deployments: write
+      pull-requests: write
+
     runs-on: ubuntu-latest
 
     steps:
