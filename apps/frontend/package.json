@@ -1,0 +1,31 @@
+{
+  "name": "frontend",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "clean": "bun clean:astro; bun clean:dist",
+    "clean:astro": "rimraf .astro",
+    "clean:dist": "rimraf dist"
+  },
+  "dependencies": {
+    "@astrojs/check": "0.3.4",
+    "@astrojs/react": "3.0.9",
+    "@astrojs/rss": "4.0.1",
+    "@astrojs/sitemap": "3.0.4",
+    "astro": "4.1.1",
+    "astro-auto-import": "0.4.2",
+    "prop-types": "15.8.1"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.47",
+    "eslint": "8.56.0",
+    "prettier": "3.1.1",
+    "prettier-plugin-astro": "0.12.3",
+    "typescript": "5.3.3"
+  }
+}
