@@ -54,22 +54,3 @@ jobs:
 
       - name: Build
         run: bun run build --filter=frontend
-
-  docs:
-    runs-on: ubuntu-22.04
-    needs: changed
-    if: needs.changed.outputs.docs == 'true'
-    permissions:
-      contents: read
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.1.1
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1.1.1
-
-      - name: Install deps (with cache)
-        run: bun install --filter=docs --frozen-lockfile
-
-      - name: Build
-        run: bun run build --filter=docs
