@@ -7,43 +7,127 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: development-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest
-    env:
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_DEV_PROJECT_ID }}
+  changed:
+    runs-on: ubuntu-22.04
+
+    outputs:
+      frontend: ${{ steps.needs.outputs.frontend }}
+      docs: ${{ steps.needs.outputs.docs }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: Paths Changes Filter
+        uses: dorny/paths-filter@v2.11.1
+        id: changes
+        with:
+          filters: |
+            frontend:
+              - 'apps/frontend/**/*'
+              - 'package.json'
+            docs:
+              - 'apps/docs/**/*'
+              - 'package.json'
+      - name: Output Needs
+        id: needs
+        run: |
+          echo "frontend=${{ env.IS_DISPATCH == 'true' || steps.changes.outputs.frontend == 'true' }}" >> $GITHUB_OUTPUT
+          echo "docs=${{ env.IS_DISPATCH == 'true' || steps.changes.outputs.docs == 'true' }}" >> $GITHUB_OUTPUT
+
+  frontend:
+    runs-on: ubuntu-22.04
+    needs: changed
+    if: needs.changed.outputs.frontend == 'true'
+
+    permissions:
+      contents: read
+      deployments: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Create GitHub App Token
+        uses: actions/create-github-app-token@v1.6.2
+        id: app-token
+        with:
+          app-id: ${{ vars.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+
       - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+        uses: oven-sh/setup-bun@v1.1.1
 
       - name: Install deps (with cache)
-        run: bun install
+        run: bun install --filter=frontend --frozen-lockfile
 
       - name: Build
-        run: bun run build
+        run: bun run build --filter=frontend
 
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/pages-action@v1.5.0
         id: cloudflare-pages
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: nito
-          directory: ./dist
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          directory: ./apps/frontend/dist
+          gitHubToken: ${{ steps.app-token.outputs.token }}
           branch: develop
 
       - name: Lighthouse
         uses: foo-software/lighthouse-check-action@v10.0.0
         with:
-          gitHubAccessToken: ${{ secrets.GITHUB_TOKEN }}
+          gitHubAccessToken: ${{ steps.app-token.outputs.token }}
+          locale: ja
+          urls: ${{ steps.cloudflare-pages.outputs.url }}
+
+  docs:
+    runs-on: ubuntu-22.04
+    needs: changed
+    if: needs.changed.outputs.docs == 'true'
+
+    permissions:
+      contents: read
+      deployments: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create GitHub App Token
+        uses: actions/create-github-app-token@v1.6.2
+        id: app-token
+        with:
+          app-id: ${{ vars.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1.1.1
+
+      - name: Install deps (with cache)
+        run: bun install --filter=docs --frozen-lockfile
+
+      - name: Build
+        run: bun run build --filter=docs
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1.5.0
+        id: cloudflare-pages
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: nito
+          directory: ./apps/docs/dist
+          gitHubToken: ${{ steps.app-token.outputs.token }}
+          branch: develop
+
+      - name: Lighthouse
+        uses: foo-software/lighthouse-check-action@v10.0.0
+        with:
+          gitHubAccessToken: ${{ steps.app-token.outputs.token }}
           locale: ja
           urls: ${{ steps.cloudflare-pages.outputs.url }}
