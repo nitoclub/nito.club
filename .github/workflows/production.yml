@@ -10,37 +10,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  changed:
-    runs-on: ubuntu-22.04
-
-    outputs:
-      frontend: ${{ steps.needs.outputs.frontend }}
-      docs: ${{ steps.needs.outputs.docs }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.1.1
-
-      - name: Paths Changes Filter
-        uses: dorny/paths-filter@v2.11.1
-        id: changes
-        with:
-          filters: |
-            frontend:
-              - 'apps/frontend/**/*'
-              - 'package.json'
-            docs:
-              - 'apps/docs/**/*'
-              - 'package.json'
-      - name: Output Needs
-        id: needs
-        run: |
-          echo "frontend=${{ env.IS_DISPATCH == 'true' || steps.changes.outputs.frontend == 'true' }}" >> $GITHUB_OUTPUT
-          echo "docs=${{ env.IS_DISPATCH == 'true' || steps.changes.outputs.docs == 'true' }}" >> $GITHUB_OUTPUT
-
   frontend:
     runs-on: ubuntu-22.04
-    needs: changed
-    if: needs.changed.outputs.frontend == 'true'
 
     permissions:
       contents: read
@@ -86,8 +57,6 @@ jobs:
 
   docs:
     runs-on: ubuntu-22.04
-    needs: changed
-    if: needs.changed.outputs.docs == 'true'
 
     permissions:
       contents: read
