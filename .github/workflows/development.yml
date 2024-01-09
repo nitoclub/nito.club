@@ -38,7 +38,7 @@ jobs:
           echo "frontend=${{ env.IS_DISPATCH == 'true' || steps.changes.outputs.frontend == 'true' }}" >> $GITHUB_OUTPUT
           echo "docs=${{ env.IS_DISPATCH == 'true' || steps.changes.outputs.docs == 'true' }}" >> $GITHUB_OUTPUT
 
-  frontend:
+  development-frontend:
     runs-on: ubuntu-22.04
     needs: changed
     if: needs.changed.outputs.frontend == 'true'
@@ -62,10 +62,10 @@ jobs:
         uses: oven-sh/setup-bun@v1.1.1
 
       - name: Install deps (with cache)
-        run: bun install --filter=frontend --frozen-lockfile
+        run: bun install --filter=frontend
 
       - name: Build
-        run: bun run build --filter=frontend
+        run: bun run build --filter=frontend...
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1.5.0
@@ -85,7 +85,7 @@ jobs:
           locale: ja
           urls: ${{ steps.cloudflare-pages.outputs.url }}
 
-  docs:
+  development-docs:
     runs-on: ubuntu-22.04
     needs: changed
     if: needs.changed.outputs.docs == 'true'
@@ -109,10 +109,10 @@ jobs:
         uses: oven-sh/setup-bun@v1.1.1
 
       - name: Install deps (with cache)
-        run: bun install --filter=docs --frozen-lockfile
+        run: bun install --filter=docs
 
       - name: Build
-        run: bun run build --filter=docs
+        run: bun run build --filter=docs...
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1.5.0

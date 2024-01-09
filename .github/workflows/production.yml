@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  frontend:
+  production-frontend:
     runs-on: ubuntu-22.04
 
     permissions:
@@ -32,10 +32,10 @@ jobs:
         uses: oven-sh/setup-bun@v1.1.1
 
       - name: Install deps (with cache)
-        run: bun install --filter=frontend --frozen-lockfile
+        run: bun install --filter=frontend
 
       - name: Build
-        run: bun run build --filter=frontend
+        run: bun run build --filter=frontend...
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1.5.0
@@ -55,7 +55,7 @@ jobs:
           locale: ja
           urls: ${{ steps.cloudflare-pages.outputs.url }}
 
-  docs:
+  production-docs:
     runs-on: ubuntu-22.04
 
     permissions:
@@ -77,10 +77,10 @@ jobs:
         uses: oven-sh/setup-bun@v1.1.1
 
       - name: Install deps (with cache)
-        run: bun install --filter=docs --frozen-lockfile
+        run: bun install --filter=docs
 
       - name: Build
-        run: bun run build --filter=docs
+        run: bun run build --filter=docs...
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1.5.0
