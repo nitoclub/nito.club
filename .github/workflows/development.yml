@@ -38,7 +38,7 @@ jobs:
           echo "frontend=${{ env.IS_DISPATCH == 'true' || steps.changes.outputs.frontend == 'true' }}" >> $GITHUB_OUTPUT
           echo "docs=${{ env.IS_DISPATCH == 'true' || steps.changes.outputs.docs == 'true' }}" >> $GITHUB_OUTPUT
 
-  frontend:
+  development-frontend:
     runs-on: ubuntu-22.04
     needs: changed
     if: needs.changed.outputs.frontend == 'true'
@@ -85,7 +85,7 @@ jobs:
           locale: ja
           urls: ${{ steps.cloudflare-pages.outputs.url }}
 
-  docs:
+  development-docs:
     runs-on: ubuntu-22.04
     needs: changed
     if: needs.changed.outputs.docs == 'true'
