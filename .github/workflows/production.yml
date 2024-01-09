@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  frontend:
+  production-frontend:
     runs-on: ubuntu-22.04
 
     permissions:
@@ -55,7 +55,7 @@ jobs:
           locale: ja
           urls: ${{ steps.cloudflare-pages.outputs.url }}
 
-  docs:
+  production-docs:
     runs-on: ubuntu-22.04
 
     permissions:
