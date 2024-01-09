@@ -32,7 +32,7 @@ jobs:
         uses: oven-sh/setup-bun@v1.1.1
 
       - name: Install deps (with cache)
-        run: bun install --filter=frontend --frozen-lockfile
+        run: bun install --filter=frontend
 
       - name: Build
         run: bun run build --filter=frontend
@@ -77,7 +77,7 @@ jobs:
         uses: oven-sh/setup-bun@v1.1.1
 
       - name: Install deps (with cache)
-        run: bun install --filter=docs --frozen-lockfile
+        run: bun install --filter=docs
 
       - name: Build
         run: bun run build --filter=docs
