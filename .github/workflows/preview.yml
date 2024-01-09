@@ -37,7 +37,7 @@ jobs:
           echo "frontend=${{ env.IS_DISPATCH == 'true' || steps.changes.outputs.frontend == 'true' }}" >> $GITHUB_OUTPUT
           echo "docs=${{ env.IS_DISPATCH == 'true' || steps.changes.outputs.docs == 'true' }}" >> $GITHUB_OUTPUT
 
-  frontend:
+  preview-frontend:
     runs-on: ubuntu-22.04
     needs: changed
     if: needs.changed.outputs.frontend == 'true'
@@ -86,7 +86,7 @@ jobs:
           prCommentEnabled: true
           urls: ${{ steps.cloudflare-pages.outputs.url }}
 
-  docs:
+  preview-docs:
     runs-on: ubuntu-22.04
     needs: changed
     if: needs.changed.outputs.docs == 'true'
