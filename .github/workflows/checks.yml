@@ -36,7 +36,7 @@ jobs:
           echo "frontend=${{ steps.changes.outputs.frontend == 'true' }}" >> $GITHUB_OUTPUT
           echo "docs=${{ steps.changes.outputs.docs == 'true' }}" >> $GITHUB_OUTPUT
 
-  frontend:
+  check-frontend:
     runs-on: ubuntu-22.04
     needs: changed
     if: needs.changed.outputs.frontend == 'true'
@@ -55,7 +55,7 @@ jobs:
       - name: Build
         run: bun run build --filter=frontend
 
-  docs:
+  check-docs:
     runs-on: ubuntu-22.04
     needs: changed
     if: needs.changed.outputs.docs == 'true'
