@@ -22,7 +22,7 @@
     "prop-types": "15.8.1"
   },
   "devDependencies": {
-    "@types/react": "18.2.48",
+    "@types/react": "18.2.51",
     "eslint": "8.56.0",
     "prettier": "3.2.4",
     "prettier-plugin-astro": "0.13.0",
