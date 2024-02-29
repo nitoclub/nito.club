@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/2rabs/nito.club/compare/v1.0.0...v1.1.0) (2024-02-29)
+
+
+### Features
+
+* discord へのリンクを追加 ([fee6d63](https://github.com/2rabs/nito.club/commit/fee6d63bca58a30ca82ef30808c2d51bf3f3aaa9))
+
 ## [1.0.0](https://github.com/2rabs/nito.club/compare/v0.1.0...v1.0.0) (2024-02-29)
 
 
