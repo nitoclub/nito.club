@@ -1,81 +1,75 @@
-# Turborepo starter
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![renovate](https://img.shields.io/badge/maintaied%20with-renovate-blue?logo=renovatebot)](https://app.renovatebot.com/dashboard)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/2rabs/nito.club)
 
-This is an official starter Turborepo.
+# nito.club
 
-## Using this example
+NITO's website.
 
-Run the following command:
+## Features
 
-```sh
-npx create-turbo@latest
+TBD
+
+### Screenshots
+
+TBD
+
+## Get Started
+
+After git clone, run the following command
+
+```shell
+$ make bs
 ```
 
-## What's inside?
+What is being processed by bootstrap is shown below.
 
-This Turborepo includes the following packages/apps:
+- Configuring git commit message templates
+- Installation of various tools by mise
+- Installation of dependencies by bun
+- Installation of husky by bun
 
-### Apps and Packages
+### Add template
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@nito/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@nito/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@nito/typescript-config`: `tsconfig.json`s used throughout the monorepo
+You can generate code from a template using plop by executing the following command.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+```shell
+$ bun plop
 ```
 
-### Develop
+## Development Environment
 
-To develop all apps and packages, run the following command:
+TBD
 
-```
-cd my-turborepo
-pnpm dev
-```
+## Architecture
 
-### Remote Caching
+- [Astro](https://astro.build/)
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+## Build
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+TBD
 
-```
-cd my-turborepo
-npx turbo login
-```
+## Testing
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+TBD
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+## Performance
 
-```
-npx turbo link
-```
+TBD
 
-## Useful Links
+## Contributors
 
-Learn more about the power of Turborepo:
+Thanks to our wonderful contributors!
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+<a href="https://github.com/2rabs/nito.club/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=2rabs/nito.club" alt="Contributors" />
+</a>
+
+## Repo Activity
+
+![Repobeats](https://repobeats.axiom.co/api/embed/99d3e89742c751362c86e5ca15818213ecaf11d9.svg "Repobeats analytics image")
+
+## License
+
+nito.club is distributed under the terms of the MIT License. See the [license](LICENSE) for more
+information.

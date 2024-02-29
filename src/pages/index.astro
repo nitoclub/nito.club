@@ -1,0 +1,109 @@
+---
+// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Component Imports
+import Hero from '../components/Hero.astro';
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/core-concepts/astro-components/
+---
+
+<BaseLayout>
+  <div class="stack gap-20 lg:gap-48">
+    <div class="wrapper stack gap-8 lg:gap-20">
+      <header class="hero">
+        <Hero
+          title="NITO"
+          tagline="NITO is a hobbyist trampoline group owned by @tatsutakein."
+          align="start"
+        >
+          <ul class='store-container'>
+            <li class='store'>
+              <a
+                href='https://apps.apple.com/jp/app/nito/id6472990576?itsct=apps_box_badge&itscg=30200'
+              ><img
+                alt='Download on the App Store'
+                src='/assets/app-store-badge.svg'
+                height='80px'
+              />
+              </a>
+            </li>
+
+            <li class='store'>
+              <a
+                href='https://play.google.com/store/apps/details?id=club.nito.app&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'
+              ><img
+                alt='Get it on Google Play'
+                src='/assets/google-play-badge.png'
+                height='80px'
+              />
+              </a>
+            </li>
+          </ul>
+        </Hero>
+
+        <img
+          class="hero-image"
+          alt="NITO mascot characters Nini and Toto"
+          src="/assets/nito.webp"
+        />
+      </header>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .store-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    gap: 1rem;
+    list-style: none;
+  }
+
+  .store-container img {
+    max-width: 100%;
+    height: 60px;
+  }
+
+  .hero .hero-img {
+    aspect-ratio: 5 / 4;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  @media (min-width: 50em) {
+    .hero {
+      display: grid;
+      grid-template-columns: 6fr 4fr;
+      padding-inline: 2.5rem;
+      gap: 3.75rem;
+    }
+
+    .hero .hero-img {
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+    }
+
+    .store-container {
+      justify-content: start;
+    }
+
+    .store-container img {
+      height: 80px;
+    }
+  }
+</style>
