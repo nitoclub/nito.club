@@ -1,4 +1,4 @@
-name: "Checks"
+name: 'Checks'
 
 on:
   pull_request:
@@ -11,41 +11,54 @@ concurrency:
 
 jobs:
   changed:
-    runs-on: ubuntu-22.04
-    outputs:
-      frontend: ${{ steps.needs.outputs.frontend }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.1.1
+    uses: ./.github/workflows/wc-changed.yml
 
-      - name: Paths Changes Filter
-        uses: dorny/paths-filter@v3.0.1
-        id: changes
-        with:
-          filters: |
-            frontend:
-              - 'apps/frontend/**/*'
-              - 'package.json'
-      - name: Output Needs
-        id: needs
-        run: |
-          echo "frontend=${{ steps.changes.outputs.frontend == 'true' }}" >> $GITHUB_OUTPUT
-
-  check-frontend:
+  check-actions:
     runs-on: ubuntu-22.04
     needs: changed
-    if: needs.changed.outputs.frontend == 'true'
-    permissions:
-      contents: read
+    if: needs.changed.outputs.actions == 'true'
+    timeout-minutes: 10
+
     steps:
+      # https://github.com/marketplace/actions/checkout
       - name: Checkout
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1.1.1
+      # https://github.com/marketplace/actions/actionlint-with-reviewdog
+      - uses: reviewdog/action-actionlint@b0a6aebe1d2191decc9b4f022cdfc248b702477d # v1.42.0
+        with:
+          fail_on_error: true
+          filter_mode: nofilter
+          level: error
+          reporter: github-pr-review
 
-      - name: Install deps (with cache)
-        run: bun install --filter=frontend
+  check-website:
+    runs-on: ubuntu-22.04
+    needs: changed
+    if: needs.changed.outputs.website == 'true'
+    timeout-minutes: 10
+
+    steps:
+      # https://github.com/marketplace/actions/checkout
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      # https://github.com/marketplace/actions/mise-action
+      - name: mise action
+        uses: jdx/mise-action@3bc85396a273ed82bba5e53a15174bbf9dba095c # v2.0.2
+
+      - name: Install deps
+        run: bun install
 
       - name: Build
-        run: bun run build --filter=frontend...
+        run: bun run build
+
+  status-check:
+    runs-on: ubuntu-22.04
+    needs:
+      - check-actions
+      - check-website
+    permissions: { }
+    if: failure()
+    steps:
+      - run: exit 1
