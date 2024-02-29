@@ -1,0 +1,40 @@
+name: "Check for changes in paths"
+
+on:
+  workflow_call:
+    outputs:
+      actions:
+        value: ${{ jobs.changes.outputs.actions }}
+      docs:
+        value: ${{ jobs.changes.outputs.docs }}
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  changed:
+    runs-on: ubuntu-22.04
+    outputs:
+      actions: ${{ steps.changes.outputs.actions }}
+      website: ${{ steps.changes.outputs.website }}
+    steps:
+      # https://github.com/marketplace/actions/checkout
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      # https://github.com/marketplace/actions/paths-changes-filter
+      - name: Paths Changes Filter
+        uses: dorny/paths-filter@ebc4d7e9ebcb0b1eb21480bb8f43113e996ac77a # v3.0.1
+        id: changes
+        with:
+          filters: |
+            actions:
+              - '.github/workflows/*.yml'
+            website:
+              - 'public/**/*'
+              - 'src/**/*'
+              - '.tool-versions'
+              - 'astro.config.mjs'
+              - 'package.json'
+              - 'tsconfig.json'
