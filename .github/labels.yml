@@ -66,9 +66,9 @@
   color: "e261d6"
   description: "Backend development"
 
-- name: "@apps/frontend"
+- name: "@apps/website"
   color: "f89c0f"
-  description: "Frontend development"
+  description: "Website development"
 
 # Core Package labels
 - name: "@core/common"
