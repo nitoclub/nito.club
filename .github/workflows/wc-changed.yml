@@ -5,8 +5,8 @@ on:
     outputs:
       actions:
         value: ${{ jobs.changes.outputs.actions }}
-      docs:
-        value: ${{ jobs.changes.outputs.docs }}
+      website:
+        value: ${{ jobs.changes.outputs.website }}
 
 permissions:
   contents: read
