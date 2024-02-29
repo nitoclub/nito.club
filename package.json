@@ -23,7 +23,7 @@
     "turbo": "1.12.4"
   },
   "engines": {
-    "node": ">=20"
+    "node": "21.6.2"
   },
   "packageManager": "bun@1.0.21"
 }
