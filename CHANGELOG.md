@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/2rabs/nito.club/compare/v1.1.0...v1.1.1) (2024-03-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency astro to v4.4.8 ([caf429a](https://github.com/2rabs/nito.club/commit/caf429a5fe9849bde68e696d4de66a24d38b8ba3))
+
 ## [1.1.0](https://github.com/2rabs/nito.club/compare/v1.0.0...v1.1.0) (2024-02-29)
 
 
