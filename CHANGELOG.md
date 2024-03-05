@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.3](https://github.com/2rabs/nito.club/compare/v1.1.2...v1.1.3) (2024-03-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency astro to v4.4.11 ([84d8a2c](https://github.com/2rabs/nito.club/commit/84d8a2c326db5cdf9a714122c6b38bcb7b03c5d7))
+* tagline のテキスト内容を英語表記としてより適切な形に変更 ([26aadef](https://github.com/2rabs/nito.club/commit/26aadef354bd6375e295016cb88a1b561e905d12))
+
 ## [1.1.2](https://github.com/2rabs/nito.club/compare/v1.1.1...v1.1.2) (2024-03-03)
 
 
