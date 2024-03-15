@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.4](https://github.com/nitoclub/nito.club/compare/v1.1.3...v1.1.4) (2024-03-14)
+
+
+### Bug Fixes
+
+* **deps:** update astro ([2edd688](https://github.com/nitoclub/nito.club/commit/2edd6886cc284ba123abba6af071fb182190c412))
+
 ## [1.1.3](https://github.com/2rabs/nito.club/compare/v1.1.2...v1.1.3) (2024-03-05)
 
 
