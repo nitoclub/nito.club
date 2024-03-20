@@ -21,6 +21,6 @@
     "@astrojs/check": "0.5.9"
   },
   "devDependencies": {
-    "typescript": "5.4.2"
+    "typescript": "5.4.3"
   }
 }
