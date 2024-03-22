@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "astro": "4.5.9",
-    "@astrojs/check": "0.5.9"
+    "@astrojs/check": "0.5.10"
   },
   "devDependencies": {
     "typescript": "5.4.3"
