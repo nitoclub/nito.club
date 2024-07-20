@@ -18,6 +18,7 @@ jobs:
     needs: changed
     if: needs.changed.outputs.website == 'true'
     with:
+      project-name: 'nito-club'
       branch: 'preview'
       gh-app-id: ${{ vars.BOT_APP_ID }}
       pr-comment-enabled: true
