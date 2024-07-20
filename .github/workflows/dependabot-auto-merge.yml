@@ -14,7 +14,7 @@ jobs:
     steps:
       # https://github.com/marketplace/actions/create-github-app-token
       - name: Create GitHub App Token
-        uses: actions/create-github-app-token@v1.10.3
+        uses: actions/create-github-app-token@31c86eb3b33c9b601a1f60f98dcbfd1d70f379b4 # v1.10.3
         id: app-token
         with:
           app-id: ${{ vars.BOT_APP_ID }}
@@ -23,7 +23,7 @@ jobs:
       # https://github.com/marketplace/actions/fetch-metadata-from-dependabot-prs
       - name: Dependabot metadata
         id: metadata
-        uses: dependabot/fetch-metadata@v2.2.0
+        uses: dependabot/fetch-metadata@dbb049abf0d677abbd7f7eee0375145b417fdd34 # v2.2.0
         with:
           github-token: "${{ steps.app-token.outputs.token }}"
 
