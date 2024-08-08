@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.9](https://github.com/nitoclub/nito.club/compare/v1.1.8...v1.1.9) (2024-08-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @astrojs/check to v0.8.3 ([4e885a1](https://github.com/nitoclub/nito.club/commit/4e885a14667ebaf66e56aafae0b01a30d10021e3))
+* **deps:** update dependency @astrojs/check to v0.9.0 ([b0ffecc](https://github.com/nitoclub/nito.club/commit/b0ffecc9fbbc97fb36ef357ef4b1507eea45fbf8))
+* **deps:** update dependency @astrojs/check to v0.9.1 ([131ea10](https://github.com/nitoclub/nito.club/commit/131ea105b45c18c25eede41c7eacf53948b807b1))
+* **deps:** update dependency @astrojs/check to v0.9.2 ([791a9a9](https://github.com/nitoclub/nito.club/commit/791a9a963843fcfb30784b7217b37e02baeac0ff))
+* **deps:** update dependency astro to v4.12.3 ([e2fa695](https://github.com/nitoclub/nito.club/commit/e2fa695e85748d67ed4d353e4f46dd195312875d))
+* **deps:** update dependency astro to v4.13.0 ([32ca5c2](https://github.com/nitoclub/nito.club/commit/32ca5c2814b5852c7ce3c7b801524b36a5f43ffc))
+* **deps:** update dependency astro to v4.13.1 ([a67b971](https://github.com/nitoclub/nito.club/commit/a67b9712370cfc9a911dc9f8eb8bf5a24e6b62c0))
+* **deps:** update dependency astro to v4.13.2 ([75594e6](https://github.com/nitoclub/nito.club/commit/75594e64d3e4126cb34e265af20fddf21a0cd09f))
+
 ## [1.1.8](https://github.com/nitoclub/nito.club/compare/v1.1.7...v1.1.8) (2024-07-20)
 
 
