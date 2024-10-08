@@ -56,7 +56,7 @@ jobs:
 
       # https://github.com/marketplace/actions/cloudflare-pages-github-action
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/wrangler-action@168bc28b7078db16f6f1ecc26477fc2248592143 # v3.8.0
+        uses: cloudflare/wrangler-action@9681c2997648301493e78cacbfb790a9f19c833f # v3.9.0
         id: cloudflare-pages
         with:
           apiToken: ${{ secrets.cloudflare-api-token }}
