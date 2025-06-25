@@ -45,7 +45,7 @@ jobs:
 
       # https://github.com/marketplace/actions/mise-action
       - name: mise action
-        uses: jdx/mise-action@429184fe4bc03ec959a8c13a993f514e6633ed3d # v2.3.0
+        uses: jdx/mise-action@5cb1df66ed5e1fb3c670ea0b62fd17a76979826a # v2.3.1
 
       - name: Install deps
         run: bun install
